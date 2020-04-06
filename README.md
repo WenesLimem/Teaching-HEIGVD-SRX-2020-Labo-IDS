@@ -355,7 +355,12 @@ Aller au répertoire /var/log/snort. Ouvrir le fichier `alert`. Vérifier qu'il 
 
 ---
 
-**Reponse :**  
+**Reponse : La première ligne reprèsente le titre d'alerte , ainsi que le sid et la version du rev. 
+            La deuxième ligne contient la priorité (importance) de l'alerte. 
+            La troisième contient la date,l'horaire , adresses ip source, port src , direction du packet , adresse ip destination et le port destination. 
+            La quatrieme ligne contient des informations concernant le protocole qui transporte (TCP), time to live (ttl), type of service (ToS), ID du packet , et la longueur du datagramme (dgmLen).
+            La cinquième ligne,contient l'id de la sequence (seq), id de l'ack correpondant (ACK), La largueur de la fenêtre de transmission (Win) et la longueur du packet TCP (TCPLen). 
+            Pour la sixième ligne , NOP signifie No Operation , et TS signifie TimeStamp. (Par contre la totalité des trois ensemble , j'ignore toujours l'utilité.)
 
 ---
 
@@ -370,8 +375,10 @@ Ecrire une règle qui journalise (sans alerter) un message à chaque fois que Wi
 
 ---
 
-**Reponse :**  
-
+**Reponse : Puis ce qu'on peut pas utiliser l'option contenu, on a opté vers l'utilisation de l'adresse IP de wikipedia. (L'adresse IP est obtenu avec nslookup <site_name> ).
+Regle : log tcp 192.168.0.216 any -> 91.198.174.192 any (msg:"Acess WIKI"; sid:123654987; rev:1;)  
+Les logs ont été mis dans un fichier pcap (snort.log.XXXXXXXXXX) qui peut lu avec tcpdump -r (ou tshark ou snort -r). 
+Les paquets ont été journalisées.**
 ---
 
 --
@@ -384,7 +391,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 ---
 
-**Reponse :**  
+**Reponse :alert icmp any any -> 192.168.0.216 any (msg:"Ping rentrant" ; itype:8 ; sid:1564987 rev:1;)**  
 
 ---
 
@@ -393,7 +400,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 ---
 
-**Reponse :**  
+**Reponse : Cet opérateur est notre seule solution "->" pour indiquer à snort qu'il ne faut capter que les packets rentrantes.**  
 
 ---
 
@@ -402,7 +409,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 ---
 
-**Reponse :**  
+**Reponse :Dans un fichier snort.log.XXXXXXXXXX . (X représente un chiffre entre 0 et 9)**  
 
 ---
 
@@ -411,7 +418,7 @@ Ecrire une règle qui alerte à chaque fois que votre système reçoit un ping d
 
 ---
 
-**Reponse :**  
+**Reponse : Le log des ping rentrantes avec le timestamp.**  
 
 ---
 
@@ -425,7 +432,7 @@ Modifier votre règle pour que les pings soient détectés dans les deux sens.
 
 ---
 
-**Reponse :**  
+**Reponse : le caratère "->" se tranforme "<>" pour dire qu'il faut alerter sur les pings entrantes vers mon adresse IP et les pings sortantes de mon adresses IP. **  
 
 ---
 
@@ -440,7 +447,9 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 
 ---
 
-**Reponse :**  
+**Reponse : Règle :  alert tcp any any -> 192.168.0.216 22 (msg:"SSH LOGIN"; sid:265498715; rev:1;) 
+            Explication : alert indique le type d'action , tcp le protocole , any adresse ip source , any port source, 
+-> vers (unidirection vers l'hôte) , adresse ip cible/dest , port 22 (port ssh). **  
 
 ---
 
@@ -450,7 +459,14 @@ Essayer d'écrire une règle qui Alerte qu'une tentative de session SSH a été 
 ---
 
 **Reponse :**  
-
+   
+[**] [1:265498715:1] SSH LOGIN [**]
+[Priority: 0]
+04/05-18:33:29.072668 192.168.0.15:52344 -> 192.168.0.216:22
+TCP TTL:64 TOS:0x12 ID:42667 IpLen:20 DgmLen:74 DF
+***A**** Seq: 0x2DEFDE13  Ack: 0xB3AD525C  Win: 0x1E3  TcpLen: 32
+TCP Options (3) => NOP NOP TS: 4210829137 712795072 
+**
 ---
 
 --
