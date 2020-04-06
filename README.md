@@ -324,7 +324,7 @@ sudo snort -c myrules.rules -i eth0
 
 ---
 
-**Reponse :**  
+**Reponse :On voit des messages qui indiquent, les nouvelles règles chargé , les ports sur lesquels on va snorter le traffic , les protocoles , etc ...**  
 
 ---
 
