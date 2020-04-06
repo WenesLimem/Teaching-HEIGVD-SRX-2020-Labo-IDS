@@ -334,7 +334,7 @@ Aller à un site web contenant dans son text votre nom ou votre mot clé que vou
 
 ---
 
-**Reponse :**  
+**Reponse :"WARNING: No proeporcessors configured for policy 0**  
 
 ---
 
@@ -344,7 +344,7 @@ Arrêter Snort avec `CTRL-C`.
 
 ---
 
-**Reponse :**  
+**Reponse :Snort nous donne des bilans sur le trafic qu'il a "snorté".Il nous affiche le runtime , le nombre de des packets qu'il a analysé, puis il nous affiche le nombre de packet par protocole.**  
 
 ---
 
