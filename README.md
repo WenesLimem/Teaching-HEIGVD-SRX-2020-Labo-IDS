@@ -360,7 +360,7 @@ Aller au répertoire /var/log/snort. Ouvrir le fichier `alert`. Vérifier qu'il 
             La troisième contient la date,l'horaire , adresses ip source, port src , direction du packet , adresse ip destination et le port destination. 
             La quatrieme ligne contient des informations concernant le protocole qui transporte (TCP), time to live (ttl), type of service (ToS), ID du packet , et la longueur du datagramme (dgmLen).
             La cinquième ligne,contient l'id de la sequence (seq), id de l'ack correpondant (ACK), La largueur de la fenêtre de transmission (Win) et la longueur du packet TCP (TCPLen). 
-            Pour la sixième ligne , NOP signifie No Operation , et TS signifie TimeStamp. (Par contre la totalité des trois ensemble , j'ignore toujours l'utilité.)
+            Pour la sixième ligne , NOP signifie No Operation , et TS signifie TimeStamp. (Par contre la totalité des trois ensemble , j'ignore toujours l'utilité.) **
 
 ---
 
@@ -479,7 +479,7 @@ Lancer Wireshark et faire une capture du trafic sur l'interface connectée au br
 
 ---
 
-**Reponse :**  
+**Reponse : snort -r <pcapfile>|<logfile> **  
 
 ---
 
@@ -489,7 +489,7 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 
 ---
 
-**Reponse :**  
+**Reponse : Pour des fichier logs de cette taille, je pense pas qu'on peut voir une large différence. Par contre, l'output de snort nosu pousse à dire que Snort n'analyse pas vraiment le fichier pcap|log , par contre , il affiche simplement les packets suivant les règles que nous avons configuré. En effet, l'affichage est presque le même que l'output de la commande snort -v -i eth0. En conclusion, on peut dire que snort ne réalise pas une analyse en temps réel, mais affiche une préanalyse. ** 
 
 ---
 
@@ -497,7 +497,7 @@ Utiliser l'option correcte de Snort pour analyser le fichier de capture Wireshar
 
 ---
 
-**Reponse :**  
+**Reponse : Oui. En effet , snort se comporte comme en interface. **  
 
 ---
 
@@ -511,7 +511,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 ---
 
-**Reponse :**  
+**Reponse : Fragtest est un module de fragroute. Les deux servent à s'évader d'un NIDS avec les packets fargmentés. **  
 
 ---
 
@@ -520,7 +520,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 ---
 
-**Reponse :**  
+**Reponse : Fragroute intercepte, modifie et reécris le traffic destiné vers une certaine destination. Fragtest permet de tester le type du fragment envoyé vers une cible.**  
 
 ---
 
@@ -529,7 +529,7 @@ Faire des recherches à propos des outils `fragroute` et `fragtest`.
 
 ---
 
-**Reponse :**  
+**Reponse : Frag3 est un module de défragmentation IP host-based|target-based de Snort. Il modélise des techniques d'antiévasion. Dans un système , si le hacker connait comment le système défragmente le packet , il peut lui envoyer un packet compromis pour qu'il soit réordonner dans une certaine manière.   **  
 
 ---
 
@@ -562,7 +562,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse : L'analyse des packets SSL/TLS**  
 
 ---
 
@@ -571,7 +571,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse :Filtrage des données sensibles connus sous PII (Personally Identifiable Information)(adresses email,SSN,Numero CC)**  
 
 ---
 
@@ -582,7 +582,7 @@ Modifier le fichier `myrules.rules` pour que snort utiliser le `Frag3 Preprocess
 
 ---
 
-**Reponse :**  
+**Reponse : A mon niveau actuel, je dirais que Snort est un outil puissant , rapide et complet (grâce aux modules) comme IDS **  
 
 ---
 
