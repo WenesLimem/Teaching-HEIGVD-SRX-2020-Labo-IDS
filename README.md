@@ -286,15 +286,15 @@ Vous pouvez aussi utiliser des captures Wireshark ou des fichiers snort.log.xxxx
 
 ---
 
-**Reponse :**  
-
+**Reponse : Quelques applications et packets doivent être décodé en text claire pour que Snort peut annoncer l'action de la règle (log/alert).**  
+ 
 ---
 
 **Question 2: Pourquoi êtes vous confronté au WARNING suivant `"No preprocessors configured for policy 0"` lorsque vous exécutez la commande `snort` avec un fichier de règles ou de configuration "home-made" ?**
 
 ---
 
-**Reponse :**  
+**Reponse : Vu qu'on a pas de préprocesseur configuré pour notre "home-made" fichier de config, le message est affiché pour nous annoncer l'information.**  
 
 ---
 
@@ -310,7 +310,7 @@ alert tcp any any -> any any (msg:"Mon nom!"; content:"Rubinstein"; sid:4000015;
 
 ---
 
-**Reponse :**  
+**Reponse : La règle en dessus, indique à Snort qu'il faut alerter (__alert__) quand du trafic sur le protocole TCP,de n'importe quel adresse(__any__) , n'importe quel port(__any__), vers (__->__), n'importe qul adresse (__any___), n'importe quel port (__any__), avec les options suivantes : Le message d'alert aura comme titre "mon nom" , doit chercher du contenu avec "Rubinstein". (__sid__)Snort Id , est un identificateur unique pour les règles de snort. (__rev__) Revision combiné avec sid nous permet d'avoir des règles snort signé et à jours.**  
 
 ---
 
